@@ -1,14 +1,23 @@
 $(document).ready(function() {
-  // $.getJSON('https://api.twitch.tv/kraken/streams/ogamingsc2?callback=?', function(data) {
-  //   console.log(data);
-  // });
 
   var users = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
 
   users.forEach(function(user) {
-    $.getJSON("https://api.twitch.tv/kraken/users/" + user + "?callback=?", function(data) {
-      console.log(data);
-        $(".viewer-container").append('<div class="user"><img class="logo" src="' + data.logo + '"/><h3 class="userName">' + data.display_name + '</h3></div>');
+
+    // get basic user information
+    $.getJSON("https://api.twitch.tv/kraken/users/" + user + "?callback=?", function(userData) {
+      console.log(userData);
+        $(".viewer-container").append('<div class="user" id="' + userData.display_name + '"><img class="logo" src="' + userData.logo + '"/><a class="userURL" href="' + userData._links.self + '"><h3 class="userName">' + userData.display_name + '</h3></a></div>');
+
+        // get the stream information
+        $.getJSON('https://api.twitch.tv/kraken/streams/' + user + '?callback=?', function(streamData) {
+          console.log(streamData);
+          if (streamData.stream === null) {
+            $("#" + user).append('<h3 class="streamStatus">Offline</h3>');
+          } else {
+            $("#" + user).append('<h3 class="streamStatus">' + streamData.stream.channel.game + ': ' + streamData.stream.channel.status.slice(0,40) + '...</h3>');
+          }
+        });
       }
     );
   });
