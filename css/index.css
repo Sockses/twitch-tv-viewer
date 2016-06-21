@@ -25,6 +25,11 @@
   border: 3px solid white;
 }
 
-.streamStatus {
+.userURL, .streamStatus {
   font-style: italic;
+}
+
+.userURL {
+  flex-grow: 1;
+  padding-left: 10px;
 }
