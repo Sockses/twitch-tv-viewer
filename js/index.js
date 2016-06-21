@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  var users = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
+  var users = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "brunofin", "comster404"];
 
   users.forEach(function(user) {
 
@@ -14,6 +14,8 @@ $(document).ready(function() {
           console.log(streamData);
           if (streamData.stream === null) {
             $('#' + user).append('<h3 class="streamStatus">Offline</h3>');
+          } else if (streamData.stream === undefined) {
+            $('#' + user).append('<h3 class="streamStatus">Account closed</h3>');
           } else {
             $('#' + user).append('<h3 class="streamStatus">' + streamData.stream.channel.game + ': ' + streamData.stream.channel.status.slice(0,40) + '...</h3>');
           }
