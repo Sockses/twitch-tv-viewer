@@ -9,9 +9,22 @@
   background-color: lightgrey;
   border: 2px solid darkgrey;
   clear: both;
+  padding: 5px;
+}
+
+.user {
+  display: flex;
+  flex-direction: row;
 }
 
 .logo {
   height: 50px;
   width: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  border: 3px solid white;
+}
+
+.streamStatus {
+  font-style: italic;
 }
